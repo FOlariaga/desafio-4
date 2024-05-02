@@ -1,0 +1,35 @@
+<div>
+    <h1>Productos en tiempo real</h1>
+    <h2>Productos</h2>
+
+    <ul>
+        {{#each products}}
+        <li>
+            <h3>{{title}}</h3>
+            <p>
+                {{description}} <br>
+                precio ${{price}}
+            </p>
+        </li>
+        {{/each}}
+    </ul>
+
+</div>
+
+<script src="/socket.io/socket.io.js"></script>
+
+<script>
+    const socketClient = io();
+
+    socketClient.on('newProduct', (data) => {
+        //console.log(data) 
+        window.location.reload()
+    })
+
+    socketClient.on("deleteProduct", (id) => {
+        //console.log(`se elimino el id ${id}`)
+        window.location.reload()
+    })
+
+
+</script>
